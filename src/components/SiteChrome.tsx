@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { NavLink } from './NavLink'
 import { ThemeSelect } from './ThemeSelect'
@@ -15,6 +16,9 @@ export function SiteHeader({ name, showWork }: { name: string; showWork: boolean
     <header className="site-header">
       <div className="container site-header__inner">
         <NavLink href="/" className="wordmark" activePrefix="/" exact>
+          {/* Both marks ship; CSS shows one per theme so the swap happens before paint, without hydration flicker. */}
+          <Image className="logo-mark logo-mark--light" src="/brand/vincent-siauw-logo-192.png" alt="" width={36} height={36} priority />
+          <Image className="logo-mark logo-mark--dark" src="/brand/vincent-siauw-logo-white-192.png" alt="" width={36} height={36} priority />
           {name}
         </NavLink>
         <nav className="site-nav" aria-label="Primary">

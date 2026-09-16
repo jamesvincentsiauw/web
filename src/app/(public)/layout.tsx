@@ -26,6 +26,19 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(getServerURL()),
     title: { default: settings?.defaultSeoTitle ?? siteName, template: `%s · ${siteName}` },
     description,
+    icons: {
+      icon: [
+        // SVG first: it recolours itself for dark mode via an internal prefers-color-scheme query,
+        // which is the only widely supported way to get a dark-mode favicon.
+        { url: '/brand/vincent-siauw-logo.svg', type: 'image/svg+xml', sizes: 'any' },
+        // PNG fallbacks for browsers without SVG favicon support; the media hints help where honoured.
+        { url: '/brand/vincent-siauw-logo-white-32.png', sizes: '32x32', type: 'image/png', media: '(prefers-color-scheme: dark)' },
+        { url: '/brand/vincent-siauw-logo-white-192.png', sizes: '192x192', type: 'image/png', media: '(prefers-color-scheme: dark)' },
+        { url: '/brand/vincent-siauw-logo-32.png', sizes: '32x32', type: 'image/png' },
+        { url: '/brand/vincent-siauw-logo-192.png', sizes: '192x192', type: 'image/png' },
+      ],
+      apple: [{ url: '/brand/vincent-siauw-logo-180.png', sizes: '180x180', type: 'image/png' }],
+    },
     alternates: { canonical: '/' },
     openGraph: {
       type: 'website',

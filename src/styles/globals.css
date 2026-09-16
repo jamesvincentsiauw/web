@@ -528,6 +528,24 @@ main:focus {
   text-decoration: none;
 }
 
+/* Green mark on light, white mark on dark. data-theme is set before first paint. */
+.logo-mark {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.logo-mark--dark {
+  display: none;
+}
+
+:root[data-theme='dark'] .logo-mark--light {
+  display: none;
+}
+
+:root[data-theme='dark'] .logo-mark--dark {
+  display: inline-block;
+}
+
 .site-nav {
   grid-area: nav;
 }
